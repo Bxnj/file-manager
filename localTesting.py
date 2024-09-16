@@ -1,7 +1,11 @@
 import utilities
 import time
+import multiprocessing as mp
+print("Number of processors: ", mp.cpu_count())
+useablePool = mp.cpu_count()-4
+#pool = mp.Pool(useablePool)
 
-testcount = 100000
+testcount = 1000
 startTime = time.time()
 for i in range(testcount):
     utilities.logging("This is a test nr: " + str(i) +"\n")

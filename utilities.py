@@ -1,8 +1,11 @@
 from datetime import datetime
 import time
 from pathlib import Path
-logFolderPath = "C:/Users\Bentox\Downloads/"
+#Only for local testing
+#logFolderPath = "C:/Users\Bentox\Downloads/"
 
+#Raspberry Pi
+logFolderPath = "home/bnj/"
 
 def logging(toLog):
     crTm = datetime.now()

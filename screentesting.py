@@ -35,4 +35,7 @@ draw.text((10, 70), "Backlight Up", font=font, fill=white)
 draw.text((10, 160), "Backlight Down", font=font, fill=white)
 
 
-displayhatmini.display()
+while True:
+    displayhatmini.display()
+    displayhatmini.set_backlight(brightness)
+    time.sleep(1.0 / 30)

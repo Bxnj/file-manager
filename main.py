@@ -109,19 +109,17 @@ def copyFile(file,tmpart):
 
 
 def initializeCopying(devices,indicator):
-	time.sleep(2)
+	time.sleep(5)
 	status = 0
 	utilities.logging("Opening partitions file")
 	try:
 		partitionsFile = open("/proc/partitions")
 		lines = partitionsFile.readlines()[2:]
 		temp = []
-		while temp[len(temp) - 3] == ["mmcblk0p"] or temp == [] or temp[len(temp) - 3] == ["mmcblk0p1"]or temp[len(temp) - 3] ==["mmcblk0p2"]:
-			temp = []
-			for line in lines:
-				words = [x.strip() for x in line.split()]
-				deviceName = words[3]
-				temp.append([deviceName])
+		for line in lines:
+			words = [x.strip() for x in line.split()]
+			deviceName = words[3]
+			temp.append([deviceName])
 		utilities.logging("Got partitions successfully: " + str(temp))
 	except Exception as e:
 		status += 1

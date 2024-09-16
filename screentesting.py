@@ -43,8 +43,11 @@ displayhatmini.on_button_pressed(button_callback)
 draw.rectangle((0, 0, width, height), (255, 255, 255))
 draw.text((10, 70), "Backlight Up", font=font, fill=(0, 0, 0))
 draw.text((10, 160), "Backlight Down", font=font, fill=(0, 0, 0))
-
-while True:
+try:
+    while True:
+        displayhatmini.display()
+        displayhatmini.set_backlight(brightness)
+        time.sleep(1.0 / 30)
+except KeyboardInterrupt:
     displayhatmini.display()
-    displayhatmini.set_backlight(brightness)
-    time.sleep(1.0 / 30)
+    displayhatmini.set_backlight(0)

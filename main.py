@@ -207,6 +207,7 @@ def initializeCopying(devices,indicator):
 		utilities.logging("Error unmounting desitnation: " + str(e))
 	utilities.logging("All Unmounted")
 	utilities.logging("Total amount of errors: " + str(status))
+	print("DONE")
 def main():
 	usb_tool = USBControlTool()
 	devices = usb_tool.start_monitoring()

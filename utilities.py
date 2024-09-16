@@ -17,6 +17,6 @@ def logging(toLog):
             file.write("Log file: \n")
         file.close()
     with open(logfile, "a") as myfile:
-        myfile.write(currentTimeString+": " +toLog)
+        myfile.write(currentTimeString+": " +toLog + "\n")
     myfile.close()
 

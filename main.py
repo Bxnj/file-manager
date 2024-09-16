@@ -115,13 +115,13 @@ def initializeCopying(devices,indicator):
 	try:
 		partitionsFile = open("/proc/partitions")
 		lines = partitionsFile.readlines()[2:]
-
 		temp = []
-
-		for line in lines:
-			words = [x.strip() for x in line.split()]
-			deviceName = words[3]
-			temp.append([deviceName])
+		while ["mmcblk0p"] in temp or temp == []:
+			temp = []
+			for line in lines:
+				words = [x.strip() for x in line.split()]
+				deviceName = words[3]
+				temp.append([deviceName])
 		utilities.logging("Got partitions successfully: " + str(temp))
 	except Exception as e:
 		status += 1

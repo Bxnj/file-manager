@@ -109,6 +109,7 @@ def copyFile(file,tmpart):
 
 
 def initializeCopying(devices,indicator):
+	time.sleep(2)
 	status = 0
 	utilities.logging("Opening partitions file")
 	try:

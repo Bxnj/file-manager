@@ -116,7 +116,7 @@ def initializeCopying(devices,indicator):
 		partitionsFile = open("/proc/partitions")
 		lines = partitionsFile.readlines()[2:]
 		temp = []
-		while ["mmcblk0p"] in temp or temp == [] or ["mmcblk0p1"] in temp or ["mmcblk0p2"] in temp:
+		while temp[len(temp) - 3] == ["mmcblk0p"] or temp == [] or temp[len(temp) - 3] == ["mmcblk0p1"]or temp[len(temp) - 3] ==["mmcblk0p2"]:
 			temp = []
 			for line in lines:
 				words = [x.strip() for x in line.split()]

@@ -55,7 +55,16 @@ def updateDisplay():
 
 
 #Input top port and destination bottom port
-
+class transfer:
+	def __int__(self,totalFilesNr, totalFilesGB):
+		self.status = ""
+		self.totalFilesNR = totalFilesNr
+		self.totalFilesGB = totalFilesGB
+		self.currentFiles = 0
+		self.nrErrors = 0
+		self.speed = 0
+		self.movedGB = 0
+		self.startTime = time.time()
 class USBControlTool:
 	def __init__(self):
 		self.context = pyudev.Context()
@@ -162,6 +171,7 @@ def copyFile(file,tmpart):
 
 
 def initializeCopying(devices,indicator):
+
 	time.sleep(5)
 	status = 0
 	utilities.logging("Opening partitions file")

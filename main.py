@@ -117,7 +117,7 @@ def initializeCopying(devices,indicator):
 		lines = partitionsFile.readlines()[2:]
 
 		temp = []
-		print(lines)
+
 		for line in lines:
 			words = [x.strip() for x in line.split()]
 			deviceName = words[3]
@@ -126,7 +126,7 @@ def initializeCopying(devices,indicator):
 	except Exception as e:
 		status += 1
 		utilities.logging("Error in getting partitions: " + str(e))
-
+	print(temp)
 	utilities.logging("Assigning Partitions")
 	try:
 		source = ""

@@ -20,34 +20,19 @@ displayhatmini.set_led(0.05, 0.05, 0.05)
 
 brightness = 1.0
 
+black = (0,0,0)
+white = (255,255,255)
+red = (255,0,0)
+green = (0,255,0)
+blue = (0,0,255)
+darkred = (175,0,0)
+darkgreen = (0,175,0)
+darkblue = (0,0,175)
 
 # Plumbing to convert Display HAT Mini button presses into pygame events
-def button_callback(pin):
-    global brightness
-
-    # Only handle presses
-    if not displayhatmini.read_button(pin):
-        return
-
-    if pin == displayhatmini.BUTTON_A:
-        brightness += 0.1
-        brightness = min(1, brightness)
-
-    if pin == displayhatmini.BUTTON_B:
-        brightness -= 0.1
-        brightness = max(0, brightness)
+draw.rectangle((0, 0, width, height), black)
+draw.text((10, 70), "Backlight Up", font=font, fill=white)
+draw.text((10, 160), "Backlight Down", font=font, fill=white)
 
 
-displayhatmini.on_button_pressed(button_callback)
-
-draw.rectangle((0, 0, width, height), (255, 255, 255))
-draw.text((10, 70), "Backlight Up", font=font, fill=(0, 0, 0))
-draw.text((10, 160), "Backlight Down", font=font, fill=(0, 0, 0))
-try:
-    while True:
-        displayhatmini.display()
-        displayhatmini.set_backlight(brightness)
-        time.sleep(1.0 / 30)
-except KeyboardInterrupt:
-    displayhatmini.display()
-    displayhatmini.set_backlight(0)
+displayhatmini.display()

@@ -37,15 +37,14 @@ darkgreen = (0,175,0)
 darkblue = (0,0,175)
 
 # Plumbing to convert Display HAT Mini button presses into pygame events
-draw.rectangle((0, 0, width, height), black)
-draw.text((10, 70), "Backlight Up", font=font, fill=white)
-draw.text((10, 160), "Backlight Down", font=font, fill=white)
 
+def updateDisplay():
+	draw.rectangle((0, 0, width, height), black)
+	draw.text((10, 70), "Backlight Up", font=font, fill=white)
+	draw.text((10, 160), "Backlight Down", font=font, fill=white)
 
-displayhatmini.display()
-displayhatmini.set_backlight(brightness)
-
-
+	displayhatmini.display()
+	displayhatmini.set_backlight(brightness)
 
 
 #Input top port and destination bottom port
@@ -256,6 +255,7 @@ def initializeCopying(devices,indicator):
 	utilities.logging("Total amount of errors: " + str(status))
 	print("DONE")
 def main():
+	updateDisplay()
 	usb_tool = USBControlTool()
 	devices = usb_tool.start_monitoring()
 

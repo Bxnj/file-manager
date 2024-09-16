@@ -20,7 +20,7 @@ width = DisplayHATMini.WIDTH
 height = DisplayHATMini.HEIGHT
 buffer = Image.new("RGB", (width, height))
 draw = ImageDraw.Draw(buffer)
-font = ImageFont.load_default()
+font = ImageFont.truetype("arial.ttf", 15)
 
 displayhatmini = DisplayHATMini(buffer, backlight_pwm=True)
 

@@ -46,7 +46,7 @@ class USBControlTool:
 						utilities.logging("Device connected with port indicator 1")
 						self.most_recent = 1
 					elif device.sys_path[-1]== "2":
-						utilities.logging("Device connected with port indicator 1")
+						utilities.logging("Device connected with port indicator 0")
 						self.most_recent = 0
 					#print(device.sys_path[-1])
 					#print(self.most_recent)
@@ -84,6 +84,12 @@ class USBControlTool:
 		print("Updated connections")
 		print(self.connected_devices)
 
+def filter_files(files):
+	finalList = []
+	for file in files:
+		if "$RECYCLE.BIN" not in file and "System Volume Information" not in file:
+			finalList.append(file)
+	return finalList
 
 
 def list_files(path):
@@ -91,7 +97,8 @@ def list_files(path):
 	for root, dirs, files in os.walk(path):
 		for file in files:
 			file_list.append(os.path.join(root,file))
-	return file_list
+	finalList = filter_files(file_list)
+	return finalList
 
 
 
@@ -137,7 +144,7 @@ def initializeCopying(devices,indicator):
 		else:
 			source = temporary[1]
 			destination = temporary[0]
-		utilities.logging("Succesfully assigned partitions: Source: " + source + " Destination: " + destination)
+		utilities.logging("Succesfully assigned partitions: Source: " + str(source) + " Destination: " + str(destination))
 	except Exception as e:
 		status += 1
 		utilities.logging("Error assigning partitions: " + str(e))

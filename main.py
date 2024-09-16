@@ -38,7 +38,7 @@ darkblue = (0,0,175)
 
 # Plumbing to convert Display HAT Mini button presses into pygame events
 
-def updateDisplay(led):
+def updateDisplay():
 	draw.rectangle((0, 0, width, height), black)
 	draw.text((10, 40), "Mounted", font=font, fill=green)
 	draw.text((10, 80), "Copy Start", font=font, fill=green)

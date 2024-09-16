@@ -23,7 +23,7 @@ draw = ImageDraw.Draw(buffer)
 font = ImageFont.load_default()
 
 displayhatmini = DisplayHATMini(buffer, backlight_pwm=True)
-displayhatmini.set_led(0.05, 0.05, 0.05)
+
 
 brightness = 1.0
 
@@ -38,11 +38,19 @@ darkblue = (0,0,175)
 
 # Plumbing to convert Display HAT Mini button presses into pygame events
 
-def updateDisplay():
+def updateDisplay(led):
 	draw.rectangle((0, 0, width, height), black)
-	draw.text((10, 70), "Backlight Up", font=font, fill=white)
-	draw.text((10, 160), "Backlight Down", font=font, fill=white)
-
+	draw.text((10, 40), "Mounted", font=font, fill=green)
+	draw.text((10, 80), "Copy Start", font=font, fill=green)
+	draw.text((10, 120), "Copy Successful", font=font, fill=green)
+	draw.text((10, 160), "Disconnect Devices", font=font, fill=green)
+	draw.text((10, 200), "Status", font=font, fill=white)
+	draw.text((160, 40), "0/100 Files", font=font, fill=white)
+	draw.text((160, 80), "0/100 Gigabyte", font=font, fill=white)
+	draw.text((160, 120), "Copy Speed", font=font, fill=white)
+	draw.text((160, 160), "00:15", font=font, fill=white)
+	draw.text((160, 200), "X Errors", font=font, fill=white)
+	displayhatmini.set_led(0.05, 0.05, 0.05)
 	displayhatmini.display()
 	displayhatmini.set_backlight(brightness)
 

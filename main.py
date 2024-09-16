@@ -116,7 +116,7 @@ def initializeCopying(devices,indicator):
 		lines = partitionsFile.readlines()[2:]
 
 		temp = []
-		print(partitionsFile.readlines())
+		print(lines)
 		for line in lines:
 			words = [x.strip() for x in line.split()]
 			deviceName = words[3]

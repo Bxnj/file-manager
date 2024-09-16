@@ -58,7 +58,7 @@ class USBControlTool:
 							initializeCopying(self.connected_devices,self.most_recent)
 							utilities.logging("Copying done")
 						except Exception as er:
-							utilities.logging("Error during copying: "+er)
+							utilities.logging("Error during copying: "+str(er))
 							pass
 		elif device.action == "remove":
 			utilities.logging("Device removed")
@@ -102,7 +102,7 @@ def copyFile(file,tmpart):
 		utilities.logging("Finished copying " + file)
 		return 0
 	except Exception as e:
-		utilities.logging("Error inside copyFile: " + e)
+		utilities.logging("Error inside copyFile: " + str(e))
 		return 1
 
 
@@ -120,10 +120,10 @@ def initializeCopying(devices,indicator):
 			words = [x.strip() for x in line.split()]
 			deviceName = words[3]
 			temp.append([deviceName])
-		utilities.logging("Got partitions successfully: " + temp)
+		utilities.logging("Got partitions successfully: " + str(temp))
 	except Exception as e:
 		status += 1
-		utilities.logging("Error in getting partitions: " + e)
+		utilities.logging("Error in getting partitions: " + str(e))
 
 	utilities.logging("Assigning Partitions")
 	try:
@@ -140,7 +140,7 @@ def initializeCopying(devices,indicator):
 		utilities.logging("Succesfully assigned partitions: Source: " + source + " Destination: " + destination)
 	except Exception as e:
 		status += 1
-		utilities.logging("Error assigning partitions: " + e)
+		utilities.logging("Error assigning partitions: " + str(e))
 
 	utilities.logging("Mounting source")
 	try:
@@ -148,14 +148,14 @@ def initializeCopying(devices,indicator):
 		utilities.logging("Source successfully Mounted")
 	except Exception as e:
 		status += 1
-		utilities.logging("Error mounting Source: " + e)
+		utilities.logging("Error mounting Source: " + str(e))
 	utilities.logging("Mounting destination")
 	try:
 		subprocess.run(["sudo","mount","-t","exfat", "/dev/"+ destination[0], "/media/bkPrg/dest"])
 		utilities.logging("Destination successfully Mounted")
 	except Exception as e:
 		status += 1
-		utilities.logging("Error mounting Destination: " + e)
+		utilities.logging("Error mounting Destination: " + str(e))
 	utilities.logging("Mounting completed with " +str(status)+ " errors")
 	utilities.logging("Getting list of all files in source")
 	try:
@@ -163,7 +163,7 @@ def initializeCopying(devices,indicator):
 		utilities.logging("Successfully received list of all files in source")
 	except Exception as e:
 		status += 1
-		utilities.logging("Error getting all files in source: " + e)
+		utilities.logging("Error getting all files in source: " + str(e))
 	utilities.logging("Creating destination folder")
 	try:
 		crTm = datetime.now()
@@ -172,7 +172,7 @@ def initializeCopying(devices,indicator):
 		utilities.logging("Succesfully created destination folder: /media/bkPrg/dest/"+tmpart+"-Unfinished")
 	except Exception as e:
 		status += 1
-		utilities.logging("Error creating destination folder: " + e)
+		utilities.logging("Error creating destination folder: " + str(e))
 	utilities.logging("Starting copy phase")
 	filestatus = 0
 	for file in srcList:
@@ -184,11 +184,11 @@ def initializeCopying(devices,indicator):
 	status += filestatus
 	utilities.logging("Renaming folder")
 	try:
-		subprocess.run(["sudo", "mv" , "/media/bkPrg/dest/"+tmpart+"-Unfinished", "/media/bkPrg/dest/"+status+"errs-"+tmpart])
+		subprocess.run(["sudo", "mv" , "/media/bkPrg/dest/"+tmpart+"-Unfinished", "/media/bkPrg/dest/"+str(status)+"errs-"+tmpart])
 		utilities.logging("Folder successfully renamed")
 	except Exception as e:
 		status += 1
-		utilities.logging("Error renaming destination folder: " + e)
+		utilities.logging("Error renaming destination folder: " + str(e))
 	if status == 0:
 		utilities.logging("SUCCESSFULLY COPIED "+str(len(srcList))+" files")
 	utilities.logging("Unmounting Source")
@@ -197,14 +197,14 @@ def initializeCopying(devices,indicator):
 		utilities.logging("Source Unmounted")
 	except Exception as e:
 		status += 1
-		utilities.logging("Error unmounting source: " + e)
+		utilities.logging("Error unmounting source: " + str(e))
 	utilities.logging("Unmounting Destination")
 	try:
 		subprocess.run(["sudo","umount","/dev/"+destination[0]])
 		utilities.logging("Destination Unmounted")
 	except Exception as e:
 		status += 1
-		utilities.logging("Error unmounting desitnation: " + e)
+		utilities.logging("Error unmounting desitnation: " + str(e))
 	utilities.logging("All Unmounted")
 	utilities.logging("Total amount of errors: " + str(status))
 def main():

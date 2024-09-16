@@ -5,7 +5,7 @@ from pathlib import Path
 #logFolderPath = "C:/Users\Bentox\Downloads/"
 
 #Raspberry Pi
-logFolderPath = "home/bnj/"
+logFolderPath = "/home/bnj/"
 
 def logging(toLog):
     crTm = datetime.now()
